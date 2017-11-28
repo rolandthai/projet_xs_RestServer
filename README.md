@@ -20,9 +20,5 @@ put the war file in tomcat server
 
 run as :
 ```
-http://[tomcat host]:[tomcat port]/RestServerXSpeedIt-0.0.1-SNAPSHOOT/api/XSpeedIt/{chaineEntree}
-ou
-http://[tomcat host]:[tomcat port]/RestServerXSpeedIt/api/XSpeedIt/{chaineEntree}
-ou
-Autre selon la configuration du context
+http://[tomcat server]/RestServerXSpeedIt/api/XSpeedIt/{chaineEntree}
 ```
