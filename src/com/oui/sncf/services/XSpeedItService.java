@@ -60,42 +60,38 @@ public class XSpeedItService {
 			List<String> listLotCartons = new ArrayList<String>();
 			
 			//liste temporaire utilisée pour le traitement
-			List<Integer> listArticlesTmpA = new ArrayList<Integer>();
+			List<Integer> listArticlesTmp = new ArrayList<Integer>();
 
 			//initialisation de la liste temporaire de la taille des articles
 			for(int i=0;i<chaineArticle.length();i++)
 			{
 				String str = chaineArticle.substring(i, i+1);
-				listArticlesTmpA.add(Integer.valueOf(str));
+				listArticlesTmp.add(Integer.valueOf(str));
 			}
 
 			//Tri decroissant de la liste temporaire de la taille des articles
-			Collections.sort(listArticlesTmpA);
-			Collections.reverse(listArticlesTmpA);
+			Collections.sort(listArticlesTmp);
+			Collections.reverse(listArticlesTmp);
 			
-			//copie de la liste temporaire des articles
-			List<Integer> listArticlesTmpB = new ArrayList<>();
-			listArticlesTmpB = listArticlesTmpA;
-			
-			System.out.println(listArticlesTmpA.toString());
+			System.out.println(listArticlesTmp.toString());
 			
 			//Algorithmique pour le traitement des cartons
-			for(int i=0;i<listArticlesTmpA.size();i++)
+			for(int i=0;i<listArticlesTmp.size();i++)
 			{
 				//carton contenant les articles
 				String strCarton = "";
 				
 				//recuperation d'un article de la liste tempraire
-				int tailleArticle1 = listArticlesTmpA.get(i);
+				int tailleArticle1 = listArticlesTmp.get(i);
 				
 				//ajout du paquet dans le lot
 				strCarton = String.valueOf(tailleArticle1);
 				
 				//boucle pour optimiser l'espace du Carton
-				for(int j=i+1;j<listArticlesTmpB.size();j++)
+				for(int j=i+1;j<listArticlesTmp.size();j++)
 				{
 					//recupération de l'article suivant
-					int tailleArticleB = listArticlesTmpB.get(j);
+					int tailleArticleB = listArticlesTmp.get(j);
 					//verification que les paquets rentre dans le lot
 					if((tailleArticle1 + tailleArticleB)<=10)
 					{
@@ -103,14 +99,14 @@ public class XSpeedItService {
 						strCarton += tailleArticleB;
 						tailleArticle1 = tailleArticle1 + tailleArticleB;
 						//On retire l'article ajouté
-						listArticlesTmpB.remove(j);
+						listArticlesTmp.remove(j);
 						j--;
 					}
 				}
 				//on enregistre le carton dans la liste du lot de carton
 				listLotCartons.add(strCarton);
 			}
-			
+			//Séparation des cartons par des /
 			String strResult = listLotCartons.toString().replaceAll(", ", "/");
 			
 			return strResult.substring(1, strResult.length()-1);
