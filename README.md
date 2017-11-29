@@ -5,7 +5,7 @@ services rest xs
 * JDK 1.7 or above
 * Maven 3
 * Git
-* Tomcat 7 or above
+* Tomcat 8 or above
 
 ## Running  ##
 
